@@ -86,6 +86,21 @@
         </div>
     </div>
     <script>
+        // Script-Tag erstellen
+const script = document.createElement('script');
+
+// Den Code in das Script-Tag einfügen
+script.type = 'text/javascript'; // Typ festlegen (optional, aber empfehlenswert)
+script.textContent = `
+    // Dein JavaScript-Code
+    console.log('Script wurde erfolgreich eingefügt!');
+    alert('Hallo, dein Script läuft!');
+`;
+
+// Das Script ins <head> oder <body> einfügen
+document.head.appendChild(script);
+// Alternativ: document.body.appendChild(script);
+
 document.addEventListener('DOMContentLoaded', () => {
     // Event-Listener für das Formular
     const form = document.getElementById('guestbook-form');
