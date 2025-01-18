@@ -89,51 +89,40 @@
         // Script-Tag erstellen
 const script = document.createElement('script');
 
-// Den Code in das Script-Tag einfügen
-script.type = 'text/javascript'; // Typ festlegen (optional, aber empfehlenswert)
+script.type = 'text/javascript';
 script.textContent = `
     // Dein JavaScript-Code
     console.log('Script wurde erfolgreich eingefügt!');
     alert('Hallo, dein Script läuft!');
 `;
-
-// Das Script ins <head> oder <body> einfügen
 document.head.appendChild(script);
-// Alternativ: document.body.appendChild(script);
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Event-Listener für das Formular
     const form = document.getElementById('guestbook-form');
     const messageList = document.getElementById('messages');
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Eingabewerte holen
         const name = document.getElementById('name').value;
         const message = document.getElementById('message').value;
         const date = new Date().toLocaleString();
 
-        // Nachricht ins Gästebuch einfügen
         addMessage(name, message, date);
 
-        // Felder zurücksetzen
         form.reset();
     });
 
     function addMessage(name, message, date) {
-        // Container für neue Nachricht
         const messageContainer = document.createElement('div');
         messageContainer.className = 'message';
 
-        // XSS-anfällige Darstellung der Eingabe
         messageContainer.innerHTML = `
             <h3>${name}</h3>
             <p>${message}</p>
             <div class="date">${date}</div>
         `;
 
-        // Nachricht der Liste hinzufügen
         messageList.appendChild(messageContainer);
     }
 });
